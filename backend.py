@@ -86,6 +86,10 @@ import re
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 import chromadb
+# Fix sqlite3 issue on Streamlit Cloud
+import sys
+import pysqlite3
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 # ------------------------
 # Load Data
@@ -171,4 +175,5 @@ def search_profiles(
         profiles.append((boosted, meta))
 
     return sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]
+
 
