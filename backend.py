@@ -112,7 +112,9 @@ df["rating"] = df["rating"].fillna(0).astype(int)
 # Chroma & Embeddings
 # ------------------------
 model = SentenceTransformer("all-MiniLM-L6-v2")
-chroma_client = chromadb.Client()
+chroma_client = chromadb.Client(chromadb.config.Settings(
+    persist_directory=None  # ✅ disables persistence
+))
 
 # Recreate collection each run to avoid stale metadata
 existing = [c.name for c in chroma_client.list_collections()]
@@ -169,3 +171,4 @@ def search_profiles(
         profiles.append((boosted, meta))
 
     return sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]
+
