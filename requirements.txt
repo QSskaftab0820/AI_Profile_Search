@@ -1,5 +1,20 @@
-streamlit==1.38.0
-pandas==2.2.2
-chromadb==0.5.5
-sentence-transformers==2.2.2
-pysqlite3-binary
+# Core
+pandas
+numpy
+regex
+
+# Vector DB + Embeddings
+chromadb
+sentence-transformers
+
+# LangChain + Gemini LLM
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+
+# Web UI
+streamlit
+
+# File formats
+pyarrow
