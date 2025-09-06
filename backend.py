@@ -50,6 +50,7 @@ if collection.count() == 0:
 # ------------------------
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
+    GOOGLE_API_KEY = "AIzaSyDBld6piLYq1YAZtdFpyeAR1XnPpXYDSJg"
     api_key=os.getenv("GOOGLE_API_KEY"),   # ✅ fixed: read from environment
     temperature=0.2
 )
@@ -113,3 +114,4 @@ def search_profiles(query: str, top_k: int = 5, min_rating: int | None = None, m
         print("⚠️ Gemini reranking failed, fallback to vector search:", e)
 
     return [(score, meta) for score, meta in sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]]
+
