@@ -1,0 +1,101 @@
+name,skills,description,experience,location,ratings
+Alice Johnson_0,"React, NLP, C++",Dedicated to continuous learning and applying cutting-edge tools in projects.,14,"Singapore, SG",4
+Fatima Khan_1,"Computer Vision, Docker, Tableau, JavaScript",Strong collaborator with experience in cross-functional teams and leadership roles.,8,"Hyderabad, IN",5
+Aarav Mehta_2,"Deep Learning, C++, Docker",Dedicated to continuous learning and applying cutting-edge tools in projects.,5,"London, UK",3
+Michael Chen_3,"Kubernetes, Power BI, React, Tableau",Dedicated to continuous learning and applying cutting-edge tools in projects.,11,"San Francisco, US",5
+Priya Sharma_4,"Docker, SQL, Computer Vision, Java",Innovative problem solver with expertise in modern software engineering practices.,3,"San Francisco, US",5
+John Smith_5,"JavaScript, Tableau, Node.js, React",Innovative problem solver with expertise in modern software engineering practices.,11,"New York, US",2
+Fatima Khan_6,"Kubernetes, AWS, React, Machine Learning",Dedicated to continuous learning and applying cutting-edge tools in projects.,4,"Bangalore, IN",3
+Alice Johnson_7,"C++, Node.js, Kubernetes, Docker, AWS",Focused on delivering impactful solutions with measurable business value.,10,"Toronto, CA",3
+David Wilson_8,"Java, SQL, Machine Learning, Tableau, Data Analysis",Expert in data-driven decision making and advanced analytics.,9,"Toronto, CA",3
+Alice Johnson_9,"AWS, SQL, Deep Learning, Java, NLP, Node.js",Strong collaborator with experience in cross-functional teams and leadership roles.,8,"Singapore, SG",5
+David Wilson_10,"Power BI, Node.js, Machine Learning",Passionate about building scalable systems and solving real-world problems.,13,"Bangalore, IN",4
+Aarav Mehta_11,"Python, Power BI, NLP, Kubernetes, Node.js, JavaScript",Committed to building efficient and user-friendly applications.,7,"Hyderabad, IN",3
+Emily Brown_12,"NLP, Java, Deep Learning, Kubernetes",Strong collaborator with experience in cross-functional teams and leadership roles.,3,"Dubai, AE",5
+Emily Brown_13,"Tableau, Computer Vision, Python, NLP, Node.js, SQL",Creative thinker with experience across multiple industries and domains.,1,"Sydney, AU",2
+John Smith_14,"Python, Node.js, SQL, Tableau, C++",Results-oriented professional with a proven track record in technology delivery.,9,"New York, US",4
+Aarav Mehta_15,"NLP, Kubernetes, Java",Passionate about building scalable systems and solving real-world problems.,2,"Berlin, DE",2
+David Wilson_16,"Python, SQL, JavaScript, Machine Learning, Data Analysis, Tableau",Creative thinker with experience across multiple industries and domains.,15,"London, UK",4
+Alice Johnson_17,"Java, React, Power BI, Docker, Deep Learning, SQL",Results-oriented professional with a proven track record in technology delivery.,5,"Hyderabad, IN",5
+John Smith_18,"Node.js, Power BI, Kubernetes, SQL, Tableau",Committed to building efficient and user-friendly applications.,10,"London, UK",1
+Michael Chen_19,"Deep Learning, Python, Computer Vision",Results-oriented professional with a proven track record in technology delivery.,5,"Dubai, AE",4
+Raj Patel_20,"Power BI, Python, Computer Vision, Node.js, Kubernetes",Focused on delivering impactful solutions with measurable business value.,13,"Toronto, CA",2
+Raj Patel_21,"JavaScript, Machine Learning, Computer Vision, Java, C++",Dedicated to continuous learning and applying cutting-edge tools in projects.,10,"Dubai, AE",5
+Michael Chen_22,"Java, React, NLP, Node.js, Tableau",Dedicated to continuous learning and applying cutting-edge tools in projects.,11,"San Francisco, US",4
+Sophia Lee_23,"C++, Tableau, React",Passionate about building scalable systems and solving real-world problems.,4,"Bangalore, IN",1
+Sophia Lee_24,"Data Analysis, Computer Vision, Power BI",Strong collaborator with experience in cross-functional teams and leadership roles.,6,"Sydney, AU",1
+Fatima Khan_25,"Kubernetes, NLP, JavaScript, Data Analysis, SQL",Experienced professional with a strong background in technology and innovation.,13,"San Francisco, US",3
+Emily Brown_26,"Computer Vision, SQL, Data Analysis, Python, Tableau, JavaScript",Passionate about building scalable systems and solving real-world problems.,9,"Singapore, SG",3
+Aarav Mehta_27,"Java, AWS, Docker, Tableau, NLP, React",Results-oriented professional with a proven track record in technology delivery.,8,"Dubai, AE",2
+Michael Chen_28,"Deep Learning, Power BI, Java, Docker",Committed to building efficient and user-friendly applications.,9,"Bangalore, IN",4
+Alice Johnson_29,"JavaScript, Data Analysis, Machine Learning, SQL, C++, Docker",Passionate about building scalable systems and solving real-world problems.,12,"Dubai, AE",4
+Aarav Mehta_30,"Data Analysis, C++, Python, Java, Computer Vision",Focused on delivering impactful solutions with measurable business value.,6,"Berlin, DE",3
+Sophia Lee_31,"NLP, JavaScript, Java, AWS, C++, Deep Learning",Innovative problem solver with expertise in modern software engineering practices.,4,"Sydney, AU",4
+Michael Chen_32,"Power BI, Deep Learning, NLP, SQL, AWS",Innovative problem solver with expertise in modern software engineering practices.,8,"London, UK",4
+Raj Patel_33,"NLP, Java, Tableau, Docker",Strong collaborator with experience in cross-functional teams and leadership roles.,13,"Bangalore, IN",1
+Emily Brown_34,"C++, AWS, Power BI, Deep Learning, React",Strong collaborator with experience in cross-functional teams and leadership roles.,11,"San Francisco, US",3
+Fatima Khan_35,"Java, C++, Docker",Dedicated to continuous learning and applying cutting-edge tools in projects.,8,"New York, US",5
+Sophia Lee_36,"AWS, React, Data Analysis, Node.js",Focused on delivering impactful solutions with measurable business value.,6,"New York, US",3
+Fatima Khan_37,"Java, Docker, SQL, Python, Machine Learning, C++",Creative thinker with experience across multiple industries and domains.,7,"Singapore, SG",5
+Aarav Mehta_38,"Java, NLP, Node.js",Results-oriented professional with a proven track record in technology delivery.,3,"San Francisco, US",1
+Alice Johnson_39,"Machine Learning, C++, AWS, Power BI, Python",Dedicated to continuous learning and applying cutting-edge tools in projects.,12,"London, UK",2
+Alice Johnson_40,"Computer Vision, Machine Learning, Deep Learning, Tableau",Results-oriented professional with a proven track record in technology delivery.,4,"Bangalore, IN",4
+Fatima Khan_41,"Deep Learning, Tableau, C++, Node.js",Creative thinker with experience across multiple industries and domains.,7,"Hyderabad, IN",1
+Sophia Lee_42,"Kubernetes, SQL, Java, Python, Node.js, Docker",Experienced professional with a strong background in technology and innovation.,1,"San Francisco, US",4
+Michael Chen_43,"C++, React, JavaScript, Data Analysis, Java",Dedicated to continuous learning and applying cutting-edge tools in projects.,9,"Berlin, DE",2
+Priya Sharma_44,"Tableau, Computer Vision, Deep Learning, C++, AWS, NLP",Committed to building efficient and user-friendly applications.,5,"Hyderabad, IN",2
+Emily Brown_45,"Docker, AWS, Python, React",Innovative problem solver with expertise in modern software engineering practices.,9,"Sydney, AU",1
+Priya Sharma_46,"Power BI, JavaScript, SQL, AWS",Strong collaborator with experience in cross-functional teams and leadership roles.,15,"Singapore, SG",2
+Michael Chen_47,"Node.js, Computer Vision, Tableau, Machine Learning",Innovative problem solver with expertise in modern software engineering practices.,14,"New York, US",5
+David Wilson_48,"JavaScript, Power BI, AWS",Experienced professional with a strong background in technology and innovation.,2,"New York, US",2
+Emily Brown_49,"Kubernetes, C++, Data Analysis, Tableau",Experienced professional with a strong background in technology and innovation.,4,"Berlin, DE",4
+Michael Chen_50,"Docker, NLP, Power BI",Innovative problem solver with expertise in modern software engineering practices.,6,"San Francisco, US",4
+Aarav Mehta_51,"Computer Vision, AWS, Data Analysis",Creative thinker with experience across multiple industries and domains.,6,"New York, US",4
+Fatima Khan_52,"Docker, C++, Power BI",Results-oriented professional with a proven track record in technology delivery.,5,"Bangalore, IN",4
+David Wilson_53,"Java, Computer Vision, Machine Learning, Data Analysis, Node.js",Results-oriented professional with a proven track record in technology delivery.,4,"Sydney, AU",5
+Aarav Mehta_54,"Docker, Computer Vision, SQL, Python",Focused on delivering impactful solutions with measurable business value.,2,"Sydney, AU",3
+Fatima Khan_55,"Python, Java, Machine Learning",Dedicated to continuous learning and applying cutting-edge tools in projects.,7,"Singapore, SG",1
+Emily Brown_56,"Power BI, NLP, JavaScript, SQL, Node.js",Experienced professional with a strong background in technology and innovation.,2,"San Francisco, US",4
+Fatima Khan_57,"JavaScript, Power BI, Data Analysis, AWS",Innovative problem solver with expertise in modern software engineering practices.,4,"Singapore, SG",2
+Michael Chen_58,"Java, React, SQL, Node.js, Computer Vision, Kubernetes",Strong collaborator with experience in cross-functional teams and leadership roles.,11,"London, UK",4
+Michael Chen_59,"Data Analysis, React, C++, Tableau, Deep Learning",Innovative problem solver with expertise in modern software engineering practices.,4,"Hyderabad, IN",2
+Sophia Lee_60,"React, Node.js, Deep Learning",Strong collaborator with experience in cross-functional teams and leadership roles.,3,"Bangalore, IN",2
+David Wilson_61,"Java, NLP, Python",Innovative problem solver with expertise in modern software engineering practices.,11,"Toronto, CA",4
+Priya Sharma_62,"Kubernetes, React, Java, C++",Creative thinker with experience across multiple industries and domains.,3,"Dubai, AE",5
+Alice Johnson_63,"Deep Learning, Machine Learning, Docker",Focused on delivering impactful solutions with measurable business value.,4,"London, UK",2
+Sophia Lee_64,"Kubernetes, Data Analysis, Machine Learning",Innovative problem solver with expertise in modern software engineering practices.,3,"Berlin, DE",2
+Priya Sharma_65,"Data Analysis, C++, Tableau, Deep Learning, Java",Experienced professional with a strong background in technology and innovation.,14,"Singapore, SG",4
+David Wilson_66,"Machine Learning, Docker, React, SQL, Power BI",Committed to building efficient and user-friendly applications.,12,"San Francisco, US",2
+Alice Johnson_67,"Data Analysis, Node.js, JavaScript, Python",Innovative problem solver with expertise in modern software engineering practices.,14,"San Francisco, US",2
+Priya Sharma_68,"React, Java, SQL",Committed to building efficient and user-friendly applications.,2,"New York, US",4
+Emily Brown_69,"React, Tableau, Node.js, Data Analysis",Creative thinker with experience across multiple industries and domains.,6,"Dubai, AE",4
+Priya Sharma_70,"JavaScript, NLP, Tableau, Java, Node.js, Kubernetes",Dedicated to continuous learning and applying cutting-edge tools in projects.,13,"Sydney, AU",1
+Emily Brown_71,"React, Docker, Power BI",Experienced professional with a strong background in technology and innovation.,6,"New York, US",5
+Aarav Mehta_72,"Java, Python, AWS",Committed to building efficient and user-friendly applications.,8,"Toronto, CA",5
+Alice Johnson_73,"SQL, Node.js, Deep Learning",Expert in data-driven decision making and advanced analytics.,7,"Toronto, CA",2
+Alice Johnson_74,"Docker, Node.js, AWS",Focused on delivering impactful solutions with measurable business value.,5,"Toronto, CA",5
+David Wilson_75,"Machine Learning, Node.js, React, Python, Kubernetes",Experienced professional with a strong background in technology and innovation.,2,"New York, US",2
+Aarav Mehta_76,"Node.js, Java, Tableau",Expert in data-driven decision making and advanced analytics.,2,"New York, US",1
+John Smith_77,"React, NLP, Docker, SQL, Machine Learning",Experienced professional with a strong background in technology and innovation.,6,"San Francisco, US",4
+David Wilson_78,"Power BI, Python, AWS, NLP, Tableau",Passionate about building scalable systems and solving real-world problems.,5,"San Francisco, US",4
+Sophia Lee_79,"Python, React, AWS, Power BI",Strong collaborator with experience in cross-functional teams and leadership roles.,11,"Dubai, AE",4
+Michael Chen_80,"NLP, Kubernetes, Deep Learning, Computer Vision, Node.js, Machine Learning",Passionate about building scalable systems and solving real-world problems.,2,"Singapore, SG",5
+David Wilson_81,"Java, Node.js, NLP, React, SQL, Kubernetes",Results-oriented professional with a proven track record in technology delivery.,6,"Bangalore, IN",1
+Sophia Lee_82,"Deep Learning, Computer Vision, Tableau, Power BI",Committed to building efficient and user-friendly applications.,5,"San Francisco, US",5
+Raj Patel_83,"Kubernetes, Deep Learning, JavaScript, React, AWS, SQL",Innovative problem solver with expertise in modern software engineering practices.,3,"Berlin, DE",5
+David Wilson_84,"C++, Kubernetes, Deep Learning, Machine Learning, Tableau",Dedicated to continuous learning and applying cutting-edge tools in projects.,9,"Berlin, DE",1
+Sophia Lee_85,"SQL, Deep Learning, Machine Learning, JavaScript, C++",Expert in data-driven decision making and advanced analytics.,9,"Sydney, AU",1
+Alice Johnson_86,"Node.js, Docker, AWS, NLP, Power BI",Expert in data-driven decision making and advanced analytics.,1,"Berlin, DE",1
+Raj Patel_87,"Computer Vision, C++, React, Node.js, Kubernetes",Focused on delivering impactful solutions with measurable business value.,8,"Sydney, AU",1
+Sophia Lee_88,"NLP, Kubernetes, Deep Learning, Docker",Focused on delivering impactful solutions with measurable business value.,15,"Berlin, DE",4
+David Wilson_89,"Computer Vision, JavaScript, AWS, Power BI, Deep Learning",Expert in data-driven decision making and advanced analytics.,6,"Toronto, CA",3
+Alice Johnson_90,"Kubernetes, Computer Vision, Deep Learning",Strong collaborator with experience in cross-functional teams and leadership roles.,8,"London, UK",3
+Michael Chen_91,"React, AWS, NLP, Node.js, C++",Committed to building efficient and user-friendly applications.,12,"New York, US",1
+Sophia Lee_92,"Computer Vision, AWS, C++, Tableau, Data Analysis, Kubernetes",Strong collaborator with experience in cross-functional teams and leadership roles.,13,"Toronto, CA",3
+Priya Sharma_93,"Java, Machine Learning, Power BI, Python, C++",Passionate about building scalable systems and solving real-world problems.,8,"San Francisco, US",3
+Raj Patel_94,"Kubernetes, Tableau, Data Analysis",Experienced professional with a strong background in technology and innovation.,2,"Sydney, AU",1
+David Wilson_95,"Kubernetes, Machine Learning, SQL, C++",Expert in data-driven decision making and advanced analytics.,12,"Berlin, DE",3
+Alice Johnson_96,"JavaScript, Node.js, C++, Machine Learning, Docker",Results-oriented professional with a proven track record in technology delivery.,9,"London, UK",5
+Raj Patel_97,"Machine Learning, Node.js, SQL, Java, Kubernetes",Strong collaborator with experience in cross-functional teams and leadership roles.,11,"Singapore, SG",2
+Emily Brown_98,"Power BI, Data Analysis, Deep Learning, Node.js, Python, Computer Vision",Creative thinker with experience across multiple industries and domains.,14,"Dubai, AE",2
+Alice Johnson_99,"JavaScript, Data Analysis, Docker, AWS, Machine Learning, NLP",Committed to building efficient and user-friendly applications.,4,"Hyderabad, IN",1
