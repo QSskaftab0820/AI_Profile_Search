@@ -1,48 +1,45 @@
 import streamlit as st
-from importlib import reload
-import backend
+from backend import search_profiles
 
-backend = reload(backend)
-search_profiles = backend.search_profiles
+st.set_page_config(page_title="🔍 AI Profile Search", layout="wide")
 
-st.title("🔍 AI Profile Search (Optional Filters)")
-
-# --- Query input ---
+st.title("🔍 AI Profile Search")
 query = st.text_input("Enter requirement (e.g., 'React developer with AWS in Bangalore')")
 
-# --- Optional Filters ---
 with st.expander("⚙️ Apply Filters (optional)"):
-    c1, c2 = st.columns(2)
-    with c1:
-        min_rating_opt = st.selectbox("⭐ Exact Rating (optional)", ["No filter", 1, 2, 3, 4, 5], index=0)
-        min_rating = None if min_rating_opt == "No filter" else int(min_rating_opt)
-    with c2:
-        use_exp = st.checkbox("Filter by exact experience?", value=False)
-        min_exp = st.slider("💼 Exact Experience (years)", 0, 20, 3, step=1) if use_exp else None
+    min_rating = st.number_input("⭐ Exact Rating", min_value=1, max_value=5, step=1, value=None, placeholder="Select rating")
+    min_exp = st.number_input("💼 Exact Experience (years)", min_value=0, max_value=50, step=1, value=None, placeholder="Select years")
 
-# --- Run search ---
-if query:
-    kwargs = {}
-    if min_rating is not None:
-        kwargs["min_rating"] = min_rating
-    if min_exp is not None:
-        kwargs["min_exp"] = int(min_exp)
-
-    matches = search_profiles(query, top_k=10, **kwargs)
-
-    # Results
-    if matches:
-        st.subheader("Top Matches")
-        for score, meta in matches:
-            st.markdown(f"""
-            ### 👤 {meta.get('name','')}  
-            **Skills:** {meta.get('skills','')}  
-            **Description:** {meta.get('description','')}  
-            **Experience:** {meta.get('experience','')}  
-            **Location:** {meta.get('location','')}  
-            **⭐ Rating:** {meta.get('rating', 0)}  
-            _(Boosted Score: {score:.2f})_
-            """)
-            st.markdown("---")
+if st.button("Search"):
+    if not query.strip():
+        st.warning("⚠️ Please enter a query to search.")
     else:
-        st.warning("No profiles found that meet your requirements.")
+        matches = search_profiles(query, top_k=10, min_rating=min_rating if min_rating else None, min_exp=min_exp if min_exp else None)
+
+        if not matches:
+            st.error("🚫 No matching profiles found for your query and filters.")
+        else:
+            st.subheader("✨ Top Matches")
+            for idx, (score, meta) in enumerate(matches, start=1):
+                st.markdown(f"""
+                <div style="
+                    padding:15px;
+                    border-radius:10px;
+                    background-color:#f9f9f9;
+                    margin-bottom:12px;
+                    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+                    color:#000000;  /* ✅ force black text */
+                    font-family:Arial, sans-serif;
+                ">
+                    <h4 style="color:#000000;">👤 {meta.get('name','')}</h4>
+                    <p><b>🛠 Skills:</b> {meta.get('skills','')}</p>
+                    <p><b>📄 Description:</b> {meta.get('description','')}</p>
+                    <p><b>💼 Experience:</b> {meta.get('experience','')}</p>
+                    <p><b>📍 Location:</b> {meta.get('location','')}</p>
+                    <p><b>⭐ Rating:</b> {meta.get('rating', 0)}</p>
+                    <small style="color:gray;">Boosted Score: {score:.2f}</small>
+                </div>
+                """, unsafe_allow_html=True)
+                # st.markdown("---")
+
+
