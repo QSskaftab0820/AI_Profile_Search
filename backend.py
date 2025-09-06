@@ -1,95 +1,13 @@
-# import re
-# import pandas as pd
-# from sentence_transformers import SentenceTransformer
-# import chromadb
-
-# # ------------------------
-# # Load Data
-# # ------------------------
-# df = pd.read_csv("profiles_sample_100.csv")
-
-# def extract_years(exp_text):
-#     # grab the first integer in the text; default 0 if none
-#     m = re.search(r"\d+", str(exp_text) if pd.notnull(exp_text) else "")
-#     return int(m.group(0)) if m else 0
-
-# df["experience_years"] = df.get("experience", "").apply(extract_years)
-
-# # Ensure rating column exists & is int
-# if "rating" not in df.columns:
-#     df["rating"] = 0
-# df["rating"] = df["rating"].fillna(0).astype(int)
-
-# # ------------------------
-# # Chroma & Embeddings
-# # ------------------------
-# model = SentenceTransformer("all-MiniLM-L6-v2")
-# chroma_client = chromadb.Client()
-
-# # Recreate collection each run to avoid stale metadata
-# existing = [c.name for c in chroma_client.list_collections()]
-# if "profiles" in existing:
-#     chroma_client.delete_collection("profiles")
-# collection = chroma_client.create_collection(name="profiles", metadata={"hnsw:space": "cosine"})
-
-# # Index profiles
-# for idx, row in df.iterrows():
-#     text = f"{row['name']} - {row['skills']} - {row['description']} - {row['experience']} - {row['location']}"
-#     embedding = model.encode(text).tolist()
-#     collection.add(
-#         documents=[text],
-#         embeddings=[embedding],
-#         ids=[str(idx)],
-#         metadatas=[{
-#             "name": row.get("name",""),
-#             "skills": row.get("skills",""),
-#             "description": row.get("description",""),
-#             "experience": row.get("experience",""),
-#             "experience_years": int(row.get("experience_years", 0)),
-#             "location": row.get("location",""),
-#             "rating": int(row.get("rating", 0)),
-#         }]
-#     )
-
-# # ------------------------
-# # Hybrid Search
-# # ------------------------
-# def search_profiles(
-#     query: str,
-#     top_k: int = 5,
-#     rating_weight: float = 0.3,
-#     exp_weight: float = 0.15,
-#     min_rating: int | None = None,   # None = no filter
-#     min_exp: int | None = None       # None = no filter
-# ):
-#     query_embedding = model.encode(query).tolist()
-#     results = collection.query(query_embeddings=[query_embedding], n_results=max(top_k * 5, top_k))
-
-#     profiles = []
-#     for doc, meta, dist in zip(results["documents"][0], results["metadatas"][0], results["distances"][0]):
-#         similarity = 1 - dist
-#         rating = int(meta.get("rating", 0))
-#         exp = int(meta.get("experience_years", 0))
-
-#         # --- Apply exact match filters ---
-#         if (min_rating is not None and rating != min_rating):
-#             continue
-#         if (min_exp is not None and exp != min_exp):
-#             continue
-
-#         boosted = similarity + (rating_weight * rating) + (exp_weight * exp)
-#         profiles.append((boosted, meta))
-
-#     return sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]
+# More Time efficiency with Gemini Reranking
 
 import re
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 import chromadb
-# Fix sqlite3 issue on Streamlit Cloud
-import sys
-import pysqlite3
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from langchain_google_genai import ChatGoogleGenerativeAI
+import os
 
 # ------------------------
 # Load Data
@@ -97,83 +15,106 @@ sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 df = pd.read_csv("profiles_sample_100.csv")
 
 def extract_years(exp_text):
-    # grab the first integer in the text; default 0 if none
     m = re.search(r"\d+", str(exp_text) if pd.notnull(exp_text) else "")
     return int(m.group(0)) if m else 0
 
 df["experience_years"] = df.get("experience", "").apply(extract_years)
-
-# ✅ Fix: standardize column name to "rating"
-if "rating" not in df.columns:
-    if "ratings" in df.columns:   # handle plural version
-        df.rename(columns={"ratings": "rating"}, inplace=True)
-    else:
-        df["rating"] = 0
-
-df["rating"] = df["rating"].fillna(0).astype(int)
+df["rating"] = df.get("rating", df.get("ratings", 0)).fillna(0).astype(int)
+df["full_text"] = df.apply(
+    lambda r: f"{r['name']} - {r['skills']} - {r['description']} - {r['experience']} - {r['location']}", axis=1
+)
 
 # ------------------------
-# Chroma & Embeddings
+# Embeddings
 # ------------------------
 model = SentenceTransformer("all-MiniLM-L6-v2")
-chroma_client = chromadb.Client(chromadb.config.Settings(
-    persist_directory=None  # ✅ disables persistence
-))
 
-# Recreate collection each run to avoid stale metadata
-existing = [c.name for c in chroma_client.list_collections()]
-if "profiles" in existing:
-    chroma_client.delete_collection("profiles")
-collection = chroma_client.create_collection(name="profiles", metadata={"hnsw:space": "cosine"})
+if "embedding" not in df.columns:
+    df["embedding"] = model.encode(df["full_text"].tolist(), batch_size=32, show_progress_bar=True).tolist()
+    df.to_parquet("profiles_with_embeddings.parquet")
 
-# Index profiles
-for idx, row in df.iterrows():
-    text = f"{row['name']} - {row['skills']} - {row['description']} - {row['experience']} - {row['location']}"
-    embedding = model.encode(text).tolist()
+# ------------------------
+# Persistent Chroma
+# ------------------------
+chroma_client = chromadb.PersistentClient(path="chroma_db")
+collection = chroma_client.get_or_create_collection(name="profiles", metadata={"hnsw:space": "cosine"})
+
+if collection.count() == 0:
     collection.add(
-        documents=[text],
-        embeddings=[embedding],
-        ids=[str(idx)],
-        metadatas=[{
-            "name": row.get("name",""),
-            "skills": row.get("skills",""),
-            "description": row.get("description",""),
-            "experience": row.get("experience",""),
-            "experience_years": int(row.get("experience_years", 0)),
-            "location": row.get("location",""),
-            "rating": int(row.get("rating", 0)),   # ✅ fixed
-        }]
+        documents=df["full_text"].tolist(),
+        embeddings=list(df["embedding"]),
+        ids=df.index.astype(str).tolist(),
+        metadatas=df[["name", "skills", "description", "experience", "experience_years", "location", "rating"]].to_dict("records")
     )
 
 # ------------------------
-# Hybrid Search
+# Gemini setup via LangChain
 # ------------------------
-def search_profiles(
-    query: str,
-    top_k: int = 5,
-    rating_weight: float = 0.3,
-    exp_weight: float = 0.15,
-    min_rating: int | None = None,   # None = no filter
-    min_exp: int | None = None       # None = no filter
-):
-    query_embedding = model.encode(query).tolist()
-    results = collection.query(query_embeddings=[query_embedding], n_results=max(top_k * 5, top_k))
+# ------------------------
+# Gemini setup via LangChain
+# ------------------------
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-flash",
+    api_key="YOUR_GEMINI_API_KEYAIzaSyB2JXb43DIihL-elunleHl1uUoQ8cMADoI",   # ✅ direct key or os.getenv("GOOGLE_API_KEY")
+    temperature=0.2
+)
+
+prompt = PromptTemplate(
+    input_variables=["query", "profiles"],
+    template="""
+    You are an AI assistant that re-ranks candidate profiles for hiring.
+
+    User query: {query}
+
+    Candidate Profiles:
+    {profiles}
+
+    Task:
+    - Rank only by best match.
+    - Respond with ONLY the names in ranked order, comma-separated (no extra text).
+    """
+)
+rerank_chain = LLMChain(llm=llm, prompt=prompt)
+
+# ------------------------
+# Search function
+# ------------------------
+def search_profiles(query: str, top_k: int = 5, min_rating: int | None = None, min_exp: int | None = None):
+    query_emb = model.encode(query).tolist()
+
+    filters = []
+    if min_rating is not None:
+        filters.append({"rating": {"$eq": min_rating}})
+    if min_exp is not None:
+        filters.append({"experience_years": {"$eq": min_exp}})
+
+    where = {"$and": filters} if len(filters) > 1 else (filters[0] if filters else None)
+
+    results = collection.query(
+        query_embeddings=[query_emb],
+        n_results=max(top_k * 5, top_k),
+        where=where
+    )
 
     profiles = []
     for doc, meta, dist in zip(results["documents"][0], results["metadatas"][0], results["distances"][0]):
         similarity = 1 - dist
-        rating = int(meta.get("rating", 0))
-        exp = int(meta.get("experience_years", 0))
-
-        # --- Apply exact match filters ---
-        if (min_rating is not None and rating != min_rating):
-            continue
-        if (min_exp is not None and exp != min_exp):
-            continue
-
-        boosted = similarity + (rating_weight * rating) + (exp_weight * exp)
+        boosted = similarity + (0.3 * (int(meta.get("rating", 0)) / 5)) + (0.15 * (int(meta.get("experience_years", 0)) / 10))
         profiles.append((boosted, meta))
 
-    return sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]
+    if not profiles:
+        return []
 
+    # Prepare text for reranking
+    profiles_text = "\n".join([f"{p[1]['name']} - {p[1]['skills']} - {p[1]['description']}" for p in profiles])
 
+    try:
+        reranked = rerank_chain.run(query=query, profiles=profiles_text)
+        reranked_names = [name.strip() for name in reranked.split(",") if name.strip()]
+        ranked_profiles = [p for name in reranked_names for p in profiles if p[1]["name"] == name]
+        if ranked_profiles:
+            return [(score, meta) for score, meta in ranked_profiles[:top_k]]
+    except Exception as e:
+        print("⚠️ Gemini reranking failed, fallback to vector search:", e)
+
+    return [(score, meta) for score, meta in sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]]
