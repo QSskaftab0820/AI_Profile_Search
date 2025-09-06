@@ -1,5 +1,3 @@
-# More Time efficiency with Gemini Reranking
-
 import re
 import pandas as pd
 from sentence_transformers import SentenceTransformer
@@ -50,12 +48,9 @@ if collection.count() == 0:
 # ------------------------
 # Gemini setup via LangChain
 # ------------------------
-# ------------------------
-# Gemini setup via LangChain
-# ------------------------
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
-    api_key=os.getenv("AIzaSyDBld6piLYq1YAZtdFpyeAR1XnPpXYDSJg"),# ✅ direct key or os.getenv("GOOGLE_API_KEY")
+    api_key=os.getenv("GOOGLE_API_KEY"),   # ✅ fixed: read from environment
     temperature=0.2
 )
 
@@ -118,5 +113,3 @@ def search_profiles(query: str, top_k: int = 5, min_rating: int | None = None, m
         print("⚠️ Gemini reranking failed, fallback to vector search:", e)
 
     return [(score, meta) for score, meta in sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]]
-
-
