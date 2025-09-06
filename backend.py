@@ -2,11 +2,22 @@
 import re
 import pandas as pd
 from sentence_transformers import SentenceTransformer
-import chromadb
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
+
+import sys
+import sqlite3
+
+try:
+    __import__("pysqlite3")
+    sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+except ImportError:
+    pass
+
+import chromad
+
 
 # ------------------------
 # Load Data
@@ -117,3 +128,4 @@ def search_profiles(query: str, top_k: int = 5, min_rating: int | None = None, m
         print("⚠️ Gemini reranking failed, fallback to vector search:", e)
 
     return [(score, meta) for score, meta in sorted(profiles, key=lambda x: x[0], reverse=True)[:top_k]]
+
